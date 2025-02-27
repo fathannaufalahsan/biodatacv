@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nama Anda - Website Pribadi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            background-color: #007bff;
+            padding: 15px 0;
+            transition: background-color 0.3s;
+        }
+
+        header.scrolled {
+            background-color: #0056b3;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1500x800') no-repeat center center/cover;
+            color: black;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero button {
+            padding: 12px 25px;
+            background-color: #28a745;
+            color: white;
+            font-size: 18px;
+        }
+
+        /* About Section */
+        .about {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fff;
+        }
+
+        .about p {
+            font-size: 18px;
+            color: #777;
+        }
+
+        /* Skills Section */
+        .skills {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .skills ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .skills li {
+            font-size: 18px;
+            margin: 10px 0;
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        .skills li:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        .skills li:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .skills li:nth-child(3) {
+            animation-delay: 1.5s;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fff;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            justify-items: center;
+            transition: grid-template-columns 0.3s ease;
+        }
+
+        .portfolio-item {
+            background-color: #f4f4f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        /* Carousel */
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1;
+        }
+
+        .carousel-button.prev {
+            left: 10px;
+        }
+
+        .carousel-button.next {
+            right: 10px;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .contact form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact label {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .contact input,
+        .contact textarea {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            font-size: 18px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact form {
+                width: 100%;
+            }
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#skills">Keterampilan</a></li>
+                <li><a href="#portfolio">Portofolio</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-text">
+            <h1>Selamat Datang di Website Pribadi Saya</h1>
+            <p>Temukan pekerjaan saya, keterampilan, dan proyek-proyek terbaru.</p>
+            <button onclick="scrollToSection('#about')">Pelajari Lebih Lanjut</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>Tentang Saya</h2>
+        <p>Halo! Saya Fathan Naufal Ahsan, seorang mahasiswa semester 8 program studi Teknik Sipil di Universitas Lampung. Selama masa studi, saya aktif berorganisasi di berbagai lembaga kemahasiswaan di fakultas, termasuk menjadi Ketua Departemen Humas di LD Fossi-FT Universitas Lampung dan Wakil Ketua Umum I di DPM-FT Universitas Lampung. Saya memiliki minat besar dalam dunia konstruksi dan perancangan teknik sipil, dengan keterampilan dalam menggunakan perangkat lunak seperti SketchUp, AutoCAD, SAP2000, Enscape, dan Microsoft Office.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2>Keterampilan</h2>
+        <ul>
+            <li>SketchUp – Mahir</li>
+            <li>Enscape – Mahir</li>
+            <li>SAP2000 – Cukup mahir</li>
+            <li>AutoCAD – Sangat mahir</li>
+            <li>Microsoft Office (PowerPoint, Excel, Word) – Mahir</li>
+        </ul>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <h2>Portofolio</h2>
+
+        <!-- Carousel -->
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="https://via.placeholder.com/600x400" alt="Project 1">
+                <img src="https://via.placeholder.com/600x400" alt="Project 2">
+                <img src="https://via.placeholder.com/600x400" alt="Project 3">
+            </div>
+            <button class="carousel-button prev" onclick="moveCarousel(-1)">&#10094;</button>
+            <button class="carousel-button next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/300" alt="Proyek 1">
+                <h3>Proyek 1</h3>
+                <p>Deskripsi Proyek 1</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/300" alt="Proyek 2">
+                <h3>Proyek 2</h3>
+                <p>Deskripsi Proyek 2</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/300" alt="Proyek 3">
+                <h3>Proyek 3</h3>
+                <p>Deskripsi Proyek 3</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/300" alt="Proyek 3">
+                <h3>Proyek 4</h3>
+                <p>Deskripsi Proyek 4</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Kontak Saya</h2>
+        <form action="#" method="POST">
+            <label for="name">Nama</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Pesan</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Kirim</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Fathan Naufal Ahsan || 082181858856 || fathannaufalahsan.18@gmail.com</p>
+    </footer>
+
+    <script>
+        // Function to smoothly scroll to sections
+        function scrollToSection(sectionId) {
+            document.querySelector(sectionId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Carousel functionality
+        let currentIndex = 0;
+
+        function moveCarousel(direction) {
+            const carouselImages = document.querySelector('.carousel-images');
+            const totalImages = carouselImages.children.length;
+            currentIndex = (currentIndex + direction + totalImages) % totalImages;
+            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    </script>
+</body>
+
+</html>
